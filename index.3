@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Website Saya</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #071952, #088395, #35A29F);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            animation: muncul 0.7s ease;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #071952, #088395);
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #071952;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 9px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: #fafafa;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #088395;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(8, 131, 149, 0.12);
+        }
+
+        .password-input {
+            padding-right: 75px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #088395;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #555;
+        }
+
+        .remember input {
+            width: auto;
+            accent-color: #088395;
+        }
+
+        .forgot {
+            color: #088395;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background: linear-gradient(135deg, #071952, #088395);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 131, 149, 0.3);
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            margin-top: 18px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 12px;
+            margin: 25px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .register {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .register a {
+            color: #088395;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+            margin-top: 28px;
+        }
+
+        .welcome {
+            display: none;
+            text-align: center;
+        }
+
+        .welcome h2 {
+            color: #071952;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            width: 100%;
+            padding: 13px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- HALAMAN LOGIN -->
+        <div id="loginPage">
+
+            <div class="logo">L</div>
+
+            <h1>Selamat Datang</h1>
+
+            <p class="subtitle">
+                Silakan login untuk masuk ke dalam website.
+                Masukkan username dan password Anda.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Masukkan username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-box">
+                        <input
+                            type="password"
+                            id="password"
+                            class="password-input"
+                            placeholder="Masukkan password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                        >
+                            Lihat
+                        </button>
+                    </div>
+                </div>
+
+                <div class="options">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        Ingat saya
+                    </label>
+
+                    <a href="#" class="forgot" id="forgotPassword">
+                        Lupa password?
+                    </a>
+                </div>
+
+                <button type="submit" class="login-button">
+                    LOGIN SEKARANG
+                </button>
+
+                <div id="message" class="message" role="status"></div>
+
+            </form>
+
+            <div class="divider">INFORMASI</div>
+
+            <div class="register">
+                Belum mempunyai akun?<br>
+                <a href="#" id="registerLink">Hubungi administrator</a>
+            </div>
+
+            <div class="footer">
+                &copy; 2026 Website Saya. Semua hak dilindungi.
+            </div>
+
+        </div>
+
+        <!-- HALAMAN SETELAH LOGIN -->
+        <div class="welcome" id="welcomePage">
+
+            <div class="logo">✓</div>
+
+            <h2>Login Berhasil!</h2>
+
+            <p>
+                Selamat datang,
+                <strong id="welcomeName"></strong>!<br><br>
+
+                Anda berhasil masuk ke website.
+                Ini adalah contoh halaman setelah login.
+            </p>
+
+            <button class="logout-button" id="logoutButton">
+                Keluar / Logout
+            </button>
+
+            <div class="footer">
+                &copy; 2026 Website Saya
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // AKUN DEMO UNTUK LATIHAN
+        // Jangan gunakan cara ini untuk akun sungguhan.
+        const usernameBenar = "admin";
+        const passwordBenar = "12345";
+
+        const loginForm = document.getElementById("loginForm");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const message = document.getElementById("message");
+
+        const loginPage = document.getElementById("loginPage");
+        const welcomePage = document.getElementById("welcomePage");
+        const welcomeName = document.getElementById("welcomeName");
+
+        // Tampilkan atau sembunyikan password
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                this.textContent = "Sembunyikan";
+            } else {
+                passwordInput.type = "password";
+                this.textContent = "Lihat";
+            }
+        });
+
+        // Proses login demo
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            if (
+                username === usernameBenar &&
+                password === passwordBenar
+            ) {
+                message.className = "message success";
+                message.textContent = "Login berhasil! Membuka halaman...";
+
+                welcomeName.textContent = username;
+
+                setTimeout(function () {
+                    loginPage.style.display = "none";
+                    welcomePage.style.display = "block";
+                }, 700);
+
+            } else {
+                message.className = "message error";
+                message.textContent =
+                    "Username atau password salah. Silakan coba lagi.";
+            }
+        });
+
+        // Tombol logout
+        document.getElementById("logoutButton").addEventListener("click", function () {
+            welcomePage.style.display = "none";
+            loginPage.style.display = "block";
+
+            loginForm.reset();
+
+            message.className = "message";
+            message.textContent = "";
+
+            passwordInput.type = "password";
+            document.getElementById("togglePassword").textContent = "Lihat";
+        });
+
+        // Contoh interaksi lupa password
+        document.getElementById("forgotPassword").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            alert(
+                "Silakan hubungi administrator untuk bantuan pemulihan password."
+            );
+        });
+
+        // Contoh interaksi pendaftaran
+        document.getElementById("registerLink").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            alert(
+                "Pendaftaran akun belum tersedia. Silakan hubungi administrator."
+            );
+        });
+    </script>
+
+</body>
+</html>
